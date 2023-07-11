@@ -1,7 +1,7 @@
 "use strict";
-
+import renderUsers from "./render.js";
 // кнопка лайка
-const initLikeButton = (object) =>{
+const initLikeButton = (element, callback, object, comment) =>{
     const likeButtonElements = document.querySelectorAll(".like-button");
     for (const likeButtonElement of likeButtonElements){
       likeButtonElement.addEventListener("click", (event) => {
@@ -14,7 +14,7 @@ const initLikeButton = (object) =>{
           object[index].likes = object[index].likes - 1;
           object[index].isLiked = false;
         }
-        //renderUsers();
+        renderUsers(element, callback, object, comment);
         }
       )
     }

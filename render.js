@@ -6,7 +6,7 @@ import replyТoСomment from "./reply.js";
 const renderUsers = (element, callback, object, comment) =>{
     const usersHtml = object.map((user, index) => callback(user, index)).join('');
     element.innerHTML = usersHtml;
-    initLikeButton(object);
+    initLikeButton(element, callback, object, comment);
     replyТoСomment(comment);
   };
 
