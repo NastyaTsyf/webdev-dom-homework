@@ -1,4 +1,4 @@
-import { loginUser } from "../api.js";
+import { loginUser, registerUser } from "../api.js";
 
 export function renderLoginComponent({ appEl, setToken, fetchUsersAndRender, usersHtml }) {
 
@@ -56,35 +56,64 @@ export function renderLoginComponent({ appEl, setToken, fetchUsersAndRender, use
     });
     
     document.getElementById("login-button").addEventListener("click", () => {
+        if (isLoginMode) {
+            const login = document.getElementById("login-input").value;
+            const password = document.getElementById("password-input").value;
+            if (!login) {
+                alert("Введите логин")
+                return
+            };
+    
+            if (!password) {
+                alert("Введите пароль")
+                return
+            };
+    
+            loginUser({
+                login: login,
+                password: password
+            }).then((user) => {
+                setToken(`Bearer ${user.user.token}`);
+                fetchUsersAndRender();
+            }).catch(error => {
+                alert(error.message)
+            })
+            } else {
+            const name = document.getElementById("name-input").value;
+            const login = document.getElementById("login-input").value;
+            const password = document.getElementById("password-input").value;
 
-        const login = document.getElementById("login-input").value;
-        const password = document.getElementById("password-input").value;
+            if (!name) {
+                alert("Введите имя")
+                return
+            };
 
-        if (!login) {
-            alert("Введите логин")
-            return
-        };
+            if (!login) {
+                alert("Введите логин")
+                return
+            };
+    
+            if (!password) {
+                alert("Введите пароль")
+                return
+            };
 
-        if (!password) {
-            alert("Введите пароль")
-            return
-        };
+            registerUser({
+                login: login,
+                password: password,
+                name: name
+            }).then((user) => {
+                setToken(`Bearer ${user.user.token}`);
+                fetchUsersAndRender();
+            }).catch(error => {
+                alert(error.message)
+            })
 
-
-        loginUser({
-            login: login,
-            password: password
-        }).then((user) => {
-            setToken(`Bearer ${user.user.token}`);
-            fetchUsersAndRender();
-        }).catch(error => {
-            alert(error.message)
-        })
+        }
     });
     };
 
     document.getElementById("go-to-login").addEventListener("click", () => {
         renderForm();
-    }
-    )
+    })
 }
