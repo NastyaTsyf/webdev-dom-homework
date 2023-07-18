@@ -1,4 +1,4 @@
-export function initLikeButton(users) {
+export function initLikeButton(users, renderApp) {
   const likeButtonElements = document.querySelectorAll(".like-button");
   for (const likeButtonElement of likeButtonElements){
     likeButtonElement.addEventListener("click", (event) => {

@@ -5,6 +5,7 @@ import { getCommentDate } from "./components/date-component.js";
 import { renderLoginComponent } from "./components/login-component.js";
 import { initLikeButton } from "./components/like-button-component.js";
 import { replyТoСomment } from "./components/reply-component.js";
+import { format } from "date-fns";
 
 
 let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
@@ -19,7 +20,7 @@ const fetchUsersAndRender = () => {
       const appComments = responseData.comments.map((comment) => {
         return {
           name: comment.author.name,
-          date: getCommentDate(comment.date),
+          date: format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss'),
           text: comment.text,
           likes: comment.likes,
           isLiked: comment.isLiked,
@@ -223,7 +224,7 @@ const renderApp = () =>{
       renderApp();
   });
 
-  initLikeButton(users);
+  initLikeButton(users, renderApp);
   replyТoСomment(commentTextEl);
 };
 renderApp();
