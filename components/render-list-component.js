@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 export function renderListComponent ({ usersHtml, appEl, userName }) {
     let appHtml = `<ul class="comments" id="comment-list">
+=======
+export function renderListComponent ({ usersHtml, appEl }) => {
+    let appHtml = () =>{
+      return `
+        <ul class="comments" id="comment-list">
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
           ${usersHtml}
           </ul>
           <div class="add-form-row" style="justify-content: center" >
@@ -11,7 +18,11 @@ export function renderListComponent ({ usersHtml, appEl, userName }) {
             id="name-input"
             type="text"
             class="add-form-name"
+<<<<<<< HEAD
             value="${userName}"
+=======
+            value=""
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
             readonly="readonly"
           />
           <textarea
@@ -28,6 +39,12 @@ export function renderListComponent ({ usersHtml, appEl, userName }) {
       </div>
       <div id="load" class="hidden">
         <h3 style="font-family: Helvetica; color: #ffffff;">Комментарий добавляется...</h3>
+<<<<<<< HEAD
       </div>`;
     appEl.innerHTML = appHtml;
+=======
+      </div>`  };
+    appEl.innerHTML = appHtml;
+
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
 }

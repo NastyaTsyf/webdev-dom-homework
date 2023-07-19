@@ -1,7 +1,11 @@
 "use strict";
 
 import { addComment, getComments } from "./api.js";
+<<<<<<< HEAD
 import { renderLoginComponent, userName } from "./components/login-component.js";
+=======
+import { renderLoginComponent } from "./components/login-component.js";
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
 import { initLikeButton } from "./components/like-button-component.js";
 import { replyТoСomment } from "./components/reply-component.js";
 import { format } from "date-fns";
@@ -68,6 +72,11 @@ const renderApp = () =>{
     </li>`
   }).join('');
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
   if (!token) {
     renderLoginComponent({ appEl, setToken: (newToken) => {
       token = newToken;
