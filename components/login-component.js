@@ -1,5 +1,7 @@
 import { loginUser, registerUser } from "../api.js";
 
+export let userName = "";
+
 export function renderLoginComponent({ appEl, setToken, fetchUsersAndRender, usersHtml }) {
 
     let isLoginMode = true;
@@ -72,10 +74,14 @@ export function renderLoginComponent({ appEl, setToken, fetchUsersAndRender, use
             loginUser({
                 login: login,
                 password: password
-            }).then((user) => {
+            })
+            .then((user) => {
                 setToken(`Bearer ${user.user.token}`);
+                userName = user.user.name
+                console.log(userName);
                 fetchUsersAndRender();
-            }).catch(error => {
+            })
+            .catch(error => {
                 alert(error.message)
             })
             } else {
