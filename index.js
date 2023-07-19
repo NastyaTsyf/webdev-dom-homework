@@ -1,10 +1,15 @@
 "use strict";
 
 import { addComment, getComments } from "./api.js";
-import { getCommentDate } from "./components/date-component.js";
+<<<<<<< HEAD
+import { renderLoginComponent, userName } from "./components/login-component.js";
+=======
 import { renderLoginComponent } from "./components/login-component.js";
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
 import { initLikeButton } from "./components/like-button-component.js";
 import { replyТoСomment } from "./components/reply-component.js";
+import { format } from "date-fns";
+import { renderListComponent } from "./components/render-list-component.js";
 
 
 let token = "Bearer asb4c4boc86gasb4c4boc86g37w3cc3bo3b83k4g37k3bk3cg3c03ck4k";
@@ -19,7 +24,7 @@ const fetchUsersAndRender = () => {
       const appComments = responseData.comments.map((comment) => {
         return {
           name: comment.author.name,
-          date: getCommentDate(comment.date),
+          date: format(new Date(comment.date), 'yyyy-MM-dd hh.mm.ss'),
           text: comment.text,
           likes: comment.likes,
           isLiked: comment.isLiked,
@@ -67,42 +72,11 @@ const renderApp = () =>{
     </li>`
   }).join('');
 
-  const renderListComponent = ({ usersHtml, appEl }) => {
-    let appHtml = users.map((user) =>{
-      return `
-        <ul class="comments" id="comment-list">
-          ${usersHtml}
-          </ul>
-          <div class="add-form-row" style="justify-content: center" >
-            <button class="add-form-button" id="delete-button">Удалить комментарий</button>
-          </div>
-      <div id="add">
-        <div class="add-form">
-          <input
-            id="name-input"
-            type="text"
-            class="add-form-name"
-            value="${user.name}"
-            readonly="readonly"
-          />
-          <textarea
-            id="comment-text"
-            type="textarea"
-            class="add-form-text"
-            placeholder="Введите ваш коментарий"
-            rows="4"
-          ></textarea>
-          <div class="add-form-row">
-            <button class="add-form-button" id="write-button">Написать</button>
-          </div>
-        </div>
-      </div>
-      <div id="load" class="hidden">
-        <h3 style="font-family: Helvetica; color: #ffffff;">Комментарий добавляется...</h3>
-      </div>`  }).join('');
-    appEl.innerHTML = appHtml;
-}
+<<<<<<< HEAD
+=======
 
+
+>>>>>>> 3ec26ac93d2b22e1dcf8f269c54595dafff6ebcc
   if (!token) {
     renderLoginComponent({ appEl, setToken: (newToken) => {
       token = newToken;
@@ -110,7 +84,7 @@ const renderApp = () =>{
     return;
   }
 
-  renderListComponent({ usersHtml, appEl });
+  renderListComponent({ usersHtml, appEl, userName });
 
 
   const writeButtonEl = document.getElementById("write-button");
@@ -223,7 +197,7 @@ const renderApp = () =>{
       renderApp();
   });
 
-  initLikeButton(users);
+  initLikeButton(users, renderApp);
   replyТoСomment(commentTextEl);
 };
 renderApp();
